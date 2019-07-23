@@ -14,7 +14,7 @@
 ## Instalation
 
 ```
-$ git clone https://github.com/ayiangio/restApiWithExpress
+$ git clone https://github.com/ayiangio/backEndAuthLib.git
 $ cd restApiWithExpress
 $ npm install
 ```
