@@ -25,7 +25,7 @@ module.exports = {
         const userToken = req.headers['x-control-user']
 
         jwt.verify(accessToken, secretKey, (err, decoded) => {
-            if (err && err.name === 'TokenExpiredError') return respon.response(res, null, 401, 'Token expired')
+            if (err && err.name === 'TokenExpiredError') return respon.response(res, null, 402, 'Token expired')
 
             if (err && err.name === 'JsonWebTokenError') return respon.response(res, null, 401, 'Invalid Token')
 

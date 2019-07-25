@@ -12,11 +12,34 @@ exports.getById = (req, res) => {
 		});
 };
 
+exports.getAll = (req, res) => {
+    
+	borrow.getAllList()
+		.then((resultBook) => {
+			respon.response(res, resultBook, 200);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+};
+exports.getListById = (req, res) => {
+	let idUser = Number (req.params.idUser);
+	console.log(req.params.idUser)
+	borrow.getListId(idUser)
+		.then((resultBook) => {
+			respon.response(res, resultBook, 200);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+};
+
 exports.post = (req,res)=>{
     let date = new Date();
     date.setDate(date.getDate() + 3);
     const newBorrow = {
-        idBook: req.body.idBook,
+		idBook: req.body.idBook,
+		idCard : req.body.idCard,
         idUser: req.body.idUser,
         dateBorrow: new Date(),
         dateReturn : null,

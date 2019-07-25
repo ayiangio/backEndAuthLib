@@ -14,7 +14,7 @@ module.exports = {
     },
     getDetailUser: (idUser) => {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT * FROM user WHERE id = ?', idUser, (err, result) => {
+            connection.query('SELECT * FROM user WHERE idUser = ?', Number(idUser), (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {
@@ -36,7 +36,7 @@ module.exports = {
     },
     getByEmail: (email) => {
         return new Promise((resolve, reject) => {
-            connection.query('SELECT idUser, email, fullName, salt, password FROM user WHERE email = ?', email, (err, result) => {
+            connection.query('SELECT idUser, email, fullName, salt, password, status FROM user WHERE email = ?', email, (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {
@@ -59,7 +59,7 @@ module.exports = {
     },
     deleteToken: (idUser) => {
         return new Promise((resolve, reject) => {
-            connection.query(`UPDATE user SET token = ? , status=0 WHERE idUser =?`, [' ', idUser], (err, result) => {
+            connection.query(`UPDATE user SET token = ? WHERE idUser =?`, [' ', idUser], (err, result) => {
                 if (!err) {
                     resolve(result)
                 } else {

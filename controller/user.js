@@ -15,6 +15,7 @@ module.exports = {
     },
     getDetailUser: (req, res) => {
         const idUser = req.params.idUser
+        console.log(idUser)
         user.getDetailUser(idUser)
             .then((resultUser) => {
                 const result = resultUser[0]
@@ -42,6 +43,7 @@ module.exports = {
             })
             .catch((err) => {
                 console.log(err)
+                respon.response(res, err, 1062)
             })
     },
     login: (req, res) => {
@@ -79,7 +81,8 @@ module.exports = {
             })
     },
     logout:(req,res)=>{
-        const idUser = req.body.idUser
+        const idUser = Number (req.body.idUser)
+        console.log(req.body.idUser)
         user.deleteToken(idUser)
         .then((resultUser)=>{
             respon.response(res, resultUser, 200)
