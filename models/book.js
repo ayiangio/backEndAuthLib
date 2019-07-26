@@ -47,10 +47,10 @@ book.getListById = (idBook, result) => {
 	return new Promise ((resolve,reject)=>{
 		conn.query(
 			`SELECT book.idBook, book.bookName, book.author, book.locRack, book.image, category.catName,
-					book.desc,book.statusBorrow as Status
+					book.desc,book.statusBorrow as Status, book.idUser
 					FROM book 
 					INNER JOIN category
-					ON book.idCat = category.idCat
+					ON book.idCat = category.idCat					
 					WHERE book.idBook = ?`,
 			Number(idBook),
 			(err, res) => {

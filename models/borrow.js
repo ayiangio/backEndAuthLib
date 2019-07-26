@@ -77,7 +77,7 @@ borrow.createBorrow = (newBorrow, result) => {
 				reject(new Error(err))
 			}
 		});
-		conn.query(`UPDATE book SET statusBorrow = 1 WHERE idBook =?`, [newBorrow.idBook])
+		conn.query(`UPDATE book SET statusBorrow = 1, idUser = ? WHERE idBook =?`, [newBorrow.idUser,newBorrow.idBook])
 	})
 };
 
@@ -91,7 +91,7 @@ borrow.updateById = (idBook, date, penalty, result) => {
 				reject(new Error(err));
 			}
 		});
-		conn.query(`UPDATE book SET statusBorrow = 0 WHERE idBook =?`, [idBook])
+		conn.query(`UPDATE book SET statusBorrow = 0, idUser =0 WHERE idBook =?`, [idBook])
 	})
 };
 module.exports = borrow;

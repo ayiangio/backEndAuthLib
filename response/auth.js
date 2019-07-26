@@ -4,9 +4,10 @@ const allowedAccess = process.env.REQUEST_HEADERS
 
 module.exports = {
     authInfo: (req, res, next) => {
-        const headerAuth = req.headers['authorization']
+        const headerAuth = req.headers["authorization"]
         const headerSecret = req.headers['x-access-token']
-        console.log(allowedAccess)
+        console.log(headerAuth)
+        console.log(headerSecret)
         if (headerAuth !== allowedAccess) {
             return respon.response(res, null, 401, 'Unauthorized, Need access token!')
         } else if (typeof headerSecret === 'undefined') {

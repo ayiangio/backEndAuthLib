@@ -13,7 +13,7 @@ exports.listAll = (req, res) => {
 };
 
 exports.listById = (req, res) => {
-	const idBook = req.params.idBook;
+	const idBook = Number(req.params.idBook);
 	book
 		.getListById(idBook)
 		.then((resultBook) => {
@@ -51,7 +51,7 @@ exports.post = (req, res) => {
 			respon.response(res, {...newBook, idBook : result.insertId}, 200);
 		})
 		.catch((err) => {
-			console.log(err);
+			return respon.response(res, null, 403, "Book is Avalaible !!!")
 		});
 };
 

@@ -6,7 +6,7 @@ module.exports = {
     getUsers: (req, res) => {
         user.getUsers()
             .then((resultUser) => {
-                resultUser.map((item)=>{
+                resultUser.map((item) => {
                     delete item.salt
                     delete item.password
                 })
@@ -39,11 +39,12 @@ module.exports = {
         }
         user.register(data)
             .then((resultUser) => {
+                console.log (resultUser)
                 respon.response(res, resultUser, 200)
             })
             .catch((err) => {
                 console.log(err)
-                respon.response(res, err, 1062)
+                return respon.response(res, null, 404, "Email Not Avaliable !!!")                
             })
     },
     login: (req, res) => {
@@ -53,19 +54,20 @@ module.exports = {
         user.getByEmail(email)
             .then((result) => {
                 const dataUser = result[0]
+                console.log(result)
                 const userPass = respon.setPass(pass, dataUser.salt).passHash
 
                 if (userPass === dataUser.password) {
                     dataUser.token = jwt.sign({
                         idUser: dataUser.idUser
                     }, process.env.SECRET_KEY, {
-                        expiresIn: '30m'
-                    })
+                            expiresIn: '120m'
+                        })
 
                     delete dataUser.salt
                     delete dataUser.password
                     user.updateToken(email, dataUser.token)
-                        .then((result) => {
+                        .then((result) => {r
                             console.log(result)
                         })
                         .catch((err) => {
@@ -78,17 +80,37 @@ module.exports = {
             })
             .catch((err) => {
                 console.log(err)
+                return respon.response(res, null, 403, "Email Not Register !!!")
             })
     },
-    logout:(req,res)=>{
-        const idUser = Number (req.body.idUser)
+    logout: (req, res) => {
+        const idUser = Number(req.body.idUser)
         console.log(req.body.idUser)
         user.deleteToken(idUser)
-        .then((resultUser)=>{
-            respon.response(res, resultUser, 200)
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
-    }
+            .then((resultUser) => {
+                respon.response(res, resultUser, 200)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    },
+    deleteUsers: (req, res) => {
+        // let idUser = Number(req.params.idUser)
+
+        console.log(req.params.idUser)
+        user.deleteUser(req.params.idUser)
+            .then((resultUser) => {                
+                respon.response(res, resultUser, 200)
+            })
+    },
+    getToken: (req, res) => {
+        const token = req.params.token
+        user.getToken(token)
+            .then((resultUser) => {
+                respon.response(res, resultUser, 200)
+            })
+            .catch(()=>{
+                return respon.response(res, null, 403, "Expired !!!")
+            })
+        }
 }
