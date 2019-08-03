@@ -29,9 +29,14 @@ DB_USER="Your_Username"
 DB_PASSWORD="Your_Password"
 DB_NAME="Your_Table"
 
-SERVER_PORT=5000
+PORT = 5000
+REQUEST_HEADERS = "Your Header"
+SECRET_KEY = "Key for Encryption Password"
+WHITELIST ="http://localhost:5000,http:example1.com"
 ```
 ## Start Server
 ```
 $ npm start
 ```
+
+&copy; [AyiAngio](https://github.com/ayiangio)  of 2019
