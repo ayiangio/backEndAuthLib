@@ -16,25 +16,26 @@ app.use(
 	})
 );
 
-
+app.use(express.static(__dirname + '/uploads'))
 app.use(bodyPraser.json());
 const whitelist = process.env.WHITELIST
 app.listen(port);
-const corsOptions = (req, callback) => {
-	if (whitelist.split(',').indexOf(req.header('Origin')) !== -1) {
-	  console.log('Success')
-	  return callback(null, {
-		origin: true
-	  })
-	} else {
-	  console.log('Failed')
-	  return callback(null, {
-		origin: false
-	  })
-	}
+
+// var whitelist = ['https://localhost:5000', 'http://example2.com']
+var corsOptions = {
+  origin: function (origin, callback) {
+	console.log("ORigin nya ",origin)
+	if (whitelist.indexOf(origin) !== -1) {
+	
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
   }
+}
+
 app.use(Cors())
-app.options('*', Cors(corsOptions))
+app.options(Cors(corsOptions))
 app.use(xssFilter())
 console.log('Connect Succes On '+port);
 app.use(logger('dev'))

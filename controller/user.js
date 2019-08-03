@@ -50,7 +50,7 @@ module.exports = {
     login: (req, res) => {
         const email = req.body.email
         const pass = req.body.password
-        // const token = req.token || " "
+        console.log(email)
         user.getByEmail(email)
             .then((result) => {
                 const dataUser = result[0]
@@ -67,7 +67,7 @@ module.exports = {
                     delete dataUser.salt
                     delete dataUser.password
                     user.updateToken(email, dataUser.token)
-                        .then((result) => {r
+                        .then((result) => {
                             console.log(result)
                         })
                         .catch((err) => {

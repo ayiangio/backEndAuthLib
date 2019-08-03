@@ -47,10 +47,9 @@ borrow.getAllList = () => {
 };
 
 borrow.getListId = (idUser) => {
-	console.log(idUser)
 	return new Promise((resolve, reject) => {
 		conn.query(
-			`SELECT borrow.dateBorrow,borrow.dateReturn,penalty,user.fullName,book.bookName
+			`SELECT borrow.dateBorrow,borrow.dateReturn,penalty,user.fullName,book.bookName,book.image
 				FROM borrow 
 				INNER JOIN user
 				ON borrow.idUser = user.idUser
@@ -77,6 +76,8 @@ borrow.createBorrow = (newBorrow, result) => {
 				reject(new Error(err))
 			}
 		});
+		console.log(newBorrow.idUser)
+		console.log(newBorrow.idBook)
 		conn.query(`UPDATE book SET statusBorrow = 1, idUser = ? WHERE idBook =?`, [newBorrow.idUser,newBorrow.idBook])
 	})
 };

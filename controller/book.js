@@ -35,12 +35,13 @@ exports.searchBooks = (req, res) => {
 		});
 };
 exports.post = (req, res) => {
+	// 'http://192.168.6.141:5000/' + req.file.path
 	let newBook = {
 		bookName: req.body.bookName,
 		author: req.body.author,
 		desc: req.body.desc,
 		locRack: req.body.locRack,
-		image: req.body.image,
+		image: "/images/" + req.file.filename,
 		idCat: req.body.idCat,
 		statusBorrow: 0
 	};
@@ -51,7 +52,8 @@ exports.post = (req, res) => {
 			respon.response(res, {...newBook, idBook : result.insertId}, 200);
 		})
 		.catch((err) => {
-			return respon.response(res, null, 403, "Book is Avalaible !!!")
+			// return respon.response(res, null, 403, "Book is Avalaible !!!")
+			console.log(err)
 		});
 };
 
