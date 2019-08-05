@@ -1,5 +1,6 @@
 const book = require('../models/book');
 const respon = require('../response/response');
+const cloudinary = require('cloudinary')
 
 exports.listAll = (req, res) => {
 	book
@@ -34,14 +35,31 @@ exports.searchBooks = (req, res) => {
 			console.log(err);
 		});
 };
-exports.post = (req, res) => {
-	// 'http://192.168.6.141:5000/' + req.file.path
+exports.post = async (req, res) => {
+	let path = req.file.path
+	let geturl = async (req) => {
+		cloudinary.config({
+			cloud_name: 'ayiangio',
+			api_key: '383959279541428',
+			api_secret: 'fqhJy7PTN6bNRwYkJ_Yz3g0jVUY'
+		})
+
+		let data
+		await cloudinary.uploader.upload(path, (result) => {
+			const fs = require('fs')
+			fs.unlinkSync(path)
+			data = result.url
+		})
+
+		return data
+	}
+	
 	let newBook = {
 		bookName: req.body.bookName,
 		author: req.body.author,
 		desc: req.body.desc,
 		locRack: req.body.locRack,
-		image: "/images/" + req.file.filename,
+		image:  await geturl(),
 		idCat: req.body.idCat,
 		statusBorrow: 0
 	};
