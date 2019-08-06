@@ -6,14 +6,16 @@ var book = function book(data) {
     (this.image = data.image),(this.idCat = data.idCat),( this.statusBorrow = data.statusBorrow) ;
 };
 
-book.getList = () => {
+book.getList = (page) => {
+	let offset = (6 * page) - 6
 	return new Promise((resolve, reject) => {
 		conn.query(
 			`SELECT book.idBook, book.bookName, book.author, 
 			book.locRack, book.image, category.catName, book.desc, book.statusBorrow as Status
 				FROM book 
 				INNER JOIN category
-				ON book.idCat = category.idCat`,
+				ON book.idCat = category.idCat
+				LIMIT ? OFFSET ?`, [6, offset],
 			(err, res) => {
 				if (!err) {
 					resolve(res);

@@ -3,8 +3,9 @@ const respon = require('../response/response');
 const cloudinary = require('cloudinary')
 
 exports.listAll = (req, res) => {
+	let page = parseInt(req.query.page) || 1
 	book
-		.getList()
+		.getList(page)
 		.then((resultBook) => {
 			respon.response(res, resultBook, 200);
 		})
@@ -39,9 +40,9 @@ exports.post = async (req, res) => {
 	let path = req.file.path
 	let geturl = async (req) => {
 		cloudinary.config({
-			cloud_name: 'ayiangio',
-			api_key: '383959279541428',
-			api_secret: 'fqhJy7PTN6bNRwYkJ_Yz3g0jVUY'
+			cloud_name: process.env.NAME,
+			api_key: process.env.APIKEY,
+			api_secret: process.env.APISECRET
 		})
 
 		let data
