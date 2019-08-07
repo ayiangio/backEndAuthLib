@@ -26,6 +26,20 @@ book.getList = (page) => {
 		);
 	});
 };
+book.getCountList = () => {
+	return new Promise((resolve, reject) => {
+		conn.query(
+			`SELECT  * FROM book`,
+			(err, res) => {
+				if (!err) {
+					resolve(res);
+				} else {
+					reject(new Error(err));
+				}
+			}
+		);
+	});
+};
 book.search = (search) => {
 	return new Promise((resolve, reject) => {
 		conn.query(

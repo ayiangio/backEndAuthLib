@@ -3,11 +3,17 @@ const respon = require('../response/response');
 const cloudinary = require('cloudinary')
 
 exports.listAll = (req, res) => {
+	let jumlah =0
+	book.getCountList()
+	.then((resultBook)=>{
+		jumlah = resultBook.length
+		console.log(jumlah)
+	})
 	let page = parseInt(req.query.page) || 1
 	book
 		.getList(page)
 		.then((resultBook) => {
-			respon.response(res, resultBook, 200);
+			respon.response(res, resultBook, 200,null,jumlah);
 		})
 		.catch((err) => {
 			console.log(err);
