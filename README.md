@@ -49,41 +49,6 @@ WHITELIST ="http://localhost:5000,http:example1.com"
 ```
 $ npm start
 ```
-## Endpoint
-* Get 
-```
-http://localhost:5000/book/
-http://localhost:5000/book/:idBook
-http://localhost:5000/borrow/:idBook
-http://localhost:5000/borrow/list/:idUser
-http://localhost:5000/user
-http://localhost:5000/user/token/:token
-http://localhost:5000/user/:idUser
-```
-
-* Post 
-```
-http://localhost:5000/book/
-http://localhost:5000/borrow/
-http://localhost:5000/user/register
-http://localhost:5000/user/login
-http://localhost:5000/user/logout
-```
-
-* Patch
-
-```
-http://localhost:5000/book/:idBook
-http://localhost:5000/borrow/:idBook
-```
-
-* Delete
-
-```
-http://localhost:5000/book/:idBook
-http://localhost:5000/borrow/:idBook
-http://localhost:5000/user/delete/:idUser
-```
 
 ## Contributors
 <center>
