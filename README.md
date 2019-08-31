@@ -14,7 +14,7 @@
 
 ## How to run the app ?
 1. Open CMD or Terminal and enter to the app directory
-2. Type `npm install`
+2. [Instalation](#Instalation)
 3. Make a new file called **.env** in the root directory, set up first [here](#Create-Environment)
 4. Turn on Web Server and MySQL can using Third-party tool like xampp, etc.
 5. Create Database on **phpmyadmin**
