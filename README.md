@@ -38,5 +38,60 @@ WHITELIST ="http://localhost:5000,http:example1.com"
 ```
 $ npm start
 ```
+## Endpoint
+* Get 
 
-&copy; [AyiAngio](https://github.com/ayiangio)  of 2019
+    <img width="500" src="./img/1.png"> 
+```
+http://localhost:5000/book/
+http://localhost:5000/book/:idBook
+http://localhost:5000/borrow/:idBook
+http://localhost:5000/borrow/list/:idUser
+http://localhost:5000/user
+http://localhost:5000/user/token/:token
+http://localhost:5000/user/:idUser
+```
+
+* Post 
+
+    <img width="500" src="./img/2.png">
+```
+http://localhost:5000/book/
+http://localhost:5000/borrow/
+http://localhost:5000/user/register
+http://localhost:5000/user/login
+http://localhost:5000/user/logout
+```
+
+* Patch
+
+    <img width="500" src="./img/3.png">
+
+```
+http://localhost:5000/book/:idBook
+http://localhost:5000/borrow/:idBook
+```
+
+* Delete
+
+    <img width="500" src="./img/4.png">
+
+```
+http://localhost:5000/book/:idBook
+http://localhost:5000/borrow/:idBook
+http://localhost:5000/user/delete/:idUser
+```
+
+## Contributors
+<center>
+  <table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/andreferi3">
+          <img width="100" src="https://avatars3.githubusercontent.com/u/15377357?s=460&v=4" alt="Ayiangio"><br/>
+          <sub><b>Ayi Angio</b></sub>
+        </a>
+      </td>
+    </tr>
+  </table>
+</center>
