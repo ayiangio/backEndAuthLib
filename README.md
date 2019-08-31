@@ -81,6 +81,8 @@ http://localhost:5000/book/:idBook
 http://localhost:5000/borrow/:idBook
 http://localhost:5000/user/delete/:idUser
 ```
+## Collection
+You can check the [collection](https://www.getpostman.com/collections/6713be7edb5506063f10)
 
 ## Contributors
 <center>
