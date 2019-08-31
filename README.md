@@ -40,8 +40,6 @@ $ npm start
 ```
 ## Endpoint
 * Get 
-
-    <img width="500" src="./img/1.png"> 
 ```
 http://localhost:5000/book/
 http://localhost:5000/book/:idBook
@@ -53,8 +51,6 @@ http://localhost:5000/user/:idUser
 ```
 
 * Post 
-
-    <img width="500" src="./img/2.png">
 ```
 http://localhost:5000/book/
 http://localhost:5000/borrow/
@@ -65,16 +61,12 @@ http://localhost:5000/user/logout
 
 * Patch
 
-    <img width="500" src="./img/3.png">
-
 ```
 http://localhost:5000/book/:idBook
 http://localhost:5000/borrow/:idBook
 ```
 
 * Delete
-
-    <img width="500" src="./img/4.png">
 
 ```
 http://localhost:5000/book/:idBook
